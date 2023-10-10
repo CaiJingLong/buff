@@ -10,6 +10,9 @@ void main() {
     final bufferInput = BufferInput.memory(bytes);
     final buffer = bufferInput.getBytes(2, 6);
     expect(buffer, equals([3, 4, 5, 6]));
+
+    expect(bufferInput.length, equals(10));
+
     bufferInput.close();
   });
 
@@ -18,6 +21,7 @@ void main() {
     final asyncBufferInput = AsyncBufferInput.memory(bytes);
     final buffer = await asyncBufferInput.getBytes(4, 6);
     expect(buffer, equals([5, 6]));
+    expect(await asyncBufferInput.length, equals(10));
     asyncBufferInput.close();
   });
 
@@ -35,6 +39,9 @@ void main() {
       final fileBufferInput = FileBufferInput.fromPath('test/test.txt');
       final buffer = fileBufferInput.getBytes(2, 6);
       expect(buffer, equals([51, 52, 53, 54]));
+
+      expect(fileBufferInput.length, equals(10));
+
       fileBufferInput.close();
     });
 
@@ -43,6 +50,9 @@ void main() {
           FileAsyncBufferInput.fromPath('test/test.txt');
       final buffer = await fileAsyncBufferInput.getBytes(4, 6);
       expect(buffer, equals([53, 54]));
+
+      expect(await fileAsyncBufferInput.length, equals(10));
+
       fileAsyncBufferInput.close();
     });
 
