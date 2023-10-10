@@ -23,7 +23,7 @@ class FileBufferInput extends BufferInput {
   }
 
   @override
-  int get length => throw UnimplementedError();
+  int get length => _raf.lengthSync();
 
   @override
   void close() {
